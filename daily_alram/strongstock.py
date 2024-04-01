@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
-import yfinance as yf
+import FinanceDataReader as fdr
 
 # pandas 설정: 최대 행, 열 출력 설정
 pd.set_option('display.max_rows', None)
@@ -54,7 +54,7 @@ def calculate_weekly_last_close_with_last_month(df):
 
 # 주가 데이터 추출 함수
 def get_stock_data(ticker, start_date, end_date):
-    data = yf.download(ticker, start=start_date, end=end_date)
+    data = fdr.DataReader(ticker, start=start_date, end=end_date)
     return data
 
 def add_additional_columns(df):
@@ -85,8 +85,8 @@ def add_additional_columns(df):
 
 
 # 사용 예시
-kospi_ticker = '^KS11'
-kosdaq_ticker = '^KQ11'
+kospi_ticker = 'KS11'
+kosdaq_ticker = 'KQ11'
 today = datetime.now()
 start_date = (today - timedelta(days=100)).strftime('%Y-%m-%d')
 end_date = today.strftime('%Y-%m-%d')

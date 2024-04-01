@@ -43,7 +43,7 @@ def main(start_days_ago):
         stock_data = fdr.DataReader(stock_symbol, start_date, end_date)
         stock_cumulative_return = stock_data['Close'].pct_change().fillna(0).add(1).cumprod().sub(1)
 
-        plt.figure(figsize=(14, 7))
+        plt.figure(figsize=(12, 6))
         plt.plot(stock_data.index, stock_cumulative_return, label=f"{stock_name}", color='red')
         plt.plot(index_data.index, index_data, label=f"{index_name}", color='gray', linestyle='-.')
         plt.title(f'{stock_name} vs. {index_name}')
@@ -67,5 +67,5 @@ def main(start_days_ago):
 
 
 # 30일과 90일 기간에 대해 메인 함수 실행
-main(22)
+main(21)
 main(61)
